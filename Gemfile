@@ -5,6 +5,7 @@ ruby "3.2.2"
 # project gems
 gem 'http'
 gem 'pry-rails'
+gem "view_component"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
@@ -59,6 +60,11 @@ end
 
 group :test do
   gem "webmock"
+  # Adds support for Capybara system testing and selenium driver
+  gem "capybara"
+  gem "selenium-webdriver"
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
 end
 
 group :development do
