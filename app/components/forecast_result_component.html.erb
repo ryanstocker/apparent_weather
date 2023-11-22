@@ -1,0 +1,9 @@
+<div class="container my-12 mx-auto px-4 md:px-12" id="forecast_result">
+  <% if @forecast_result.cached? %>
+    <span class="flex items-center text-sm font-medium text-gray-900 me-3"><span class="flex w-2.5 h-2.5 bg-green-500 rounded-full me-1.5 flex-shrink-0"></span>Forecast is cached</span>
+  <% else %>
+    <span class="flex items-center text-sm font-medium text-gray-900 me-3"><span class="flex w-2.5 h-2.5 bg-red-500 rounded-full me-1.5 flex-shrink-0"></span>Forecast is not cached</span>
+  <% end %>
+
+  <%= content %>
+</div>
