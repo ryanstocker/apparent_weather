@@ -8,9 +8,34 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google_api_key %>&libraries=places&callback=initGooglePlaces" async defer data-turbolinks-eval="false"></script>
   </head>
+  <body class="h-full">
+  <!--
+  This example requires updating your template:
 
-  <body>
-    <%= yield %>
+  ```
+  <html class="h-full">
+  <body class="h-full">
+  ```
+-->
+<div class="min-h-full">
+  <nav class="border-b border-gray-200 bg-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+  <div class="py-10">
+    <header>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div id="flash">
+          <%= render partial: "shared/flash_messages" %>
+        </div>
+        <%= yield %>
+      </div>
+    </main>
+  </div>
+</div> 
   </body>
 </html>
+
