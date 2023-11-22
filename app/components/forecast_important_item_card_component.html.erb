@@ -1,31 +1,32 @@
 <!-- Column -->
 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-    <!-- Article -->
-    <article class="overflow-hidden rounded-lg shadow-lg" id="<%= @title.parameterize %>">
-        <a href="#">
-            <img alt="Placeholder" class="block h-auto w-full" src="<%= forecast_image %>">
-        </a>
+  <!-- Article -->
+  <article class="overflow-hidden rounded-lg shadow-lg" id="<%= @title.parameterize %>">
+    <a href="#">
+      <img alt="Placeholder" class="block h-auto w-full" src="<%= forecast_image %>">
+    </a>
 
-        <header class="flex items-center justify-between leading-tight p-2 md:p-4">
-            <h1 class="text-lg">
-              <%= @title %>
-            </h1>
-            <p><%= day_hint %></p>
-            <p class="text-grey-darker text-sm">
-              <%= @forecast_partial_day.temperature %> F
-            </p>
-        </header>
+    <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+      <h1 class="text-lg">
+        <%= @title %>
+      </h1>
+      <p>
+        <%= day_hint %>
+      </p>
+      <p class="text-grey-darker text-sm">
+        <%= @forecast_partial_day.temperature %> F
+      </p>
+    </header>
 
-        <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-            <a class="flex items-center no-underline hover:underline text-black" href="#">
-                <p class="ml-2 text-sm">
-                    <%= @forecast_partial_day.short_forecast %>
-                </p>
-            </a>
-        </footer>
+    <footer class="flex items-center justify-between leading-none p-2 md:p-4">
+      <a class="flex items-center no-underline hover:underline text-black" href="#">
+        <p class="ml-2 text-sm">
+          <%= @forecast_partial_day.short_forecast %>
+        </p>
+      </a>
+    </footer>
 
-    </article>
-    <!-- END Article -->
-
+  </article>
+  <!-- END Article -->
 </div>
 <!-- END Column -->

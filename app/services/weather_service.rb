@@ -22,6 +22,7 @@ class WeatherService
   def cache_forecast!
     # some locations do not return with a zip
     return client.combined_forecast unless zip.present?
+
     client.combined_forecast.tap do |forecast|
       Rails.cache.write("forecast_#{zip}", forecast, expires_in: 30.minutes)
     end

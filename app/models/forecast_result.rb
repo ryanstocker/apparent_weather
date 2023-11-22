@@ -3,14 +3,14 @@ class ForecastResult
     walk_to_school: '08:40',
     recess: '13:20',
     walk_home: '15:40'
-  }
+  }.freeze
   attr_accessor :cached, :days
 
   def initialize(forecast, forecast_hourly)
     @cached = false
     @forecast_hourly ||= forecast_hourly
 
-    grouped_days = forecast['properties']['periods'].group_by do |day| 
+    grouped_days = forecast['properties']['periods'].group_by do |day|
       Date.parse(day['startTime'])
     end
 
@@ -38,6 +38,7 @@ class ForecastResult
 
   def fetch_specific_forecast_for(key)
     raise StandardError.new, "#{key} not found in important times" unless IMPORTANT_TIMES.has_key?(key)
+
     matching_period = forecast_hourly['properties']['periods'].detect do |period|
       IMPORTANT_TIMES[key].between?(
         DateTime.parse(period['startTime']).strftime('%H:%M'), 

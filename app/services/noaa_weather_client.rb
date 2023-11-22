@@ -13,7 +13,7 @@ class NoaaWeatherClient
     @client = HTTP
       .follow
       .timeout(
-        connect: CONNECT_TIMEOUT, read: READ_TIMEOUT
+        connect: CONNECT_TIMEOUT, read: READ_TIMEOUT,
       )
     @lat = lat
     @long = long
@@ -30,7 +30,7 @@ class NoaaWeatherClient
   def combined_forecast
     ForecastResult.new(
       forecast,
-      forecast_hourly
+      forecast_hourly,
     )
   end
 
@@ -38,16 +38,18 @@ class NoaaWeatherClient
     new(lat, long).forecast
   end
 
-  def self.forecast_hourly_for(lat,long)
+  def self.forecast_hourly_for(lat, long)
     new(lat, long).forecast_hourly
   end
 
   private
 
+  attr_reader :client
+
   def points
     # format is: /points/lat,long
-    specific_endpoint = POINTS_ENDPOINT + [lat,long].join(',')
-    @points_request ||= request(endpoint: specific_endpoint)
+    specific_endpoint = POINTS_ENDPOINT + [lat, long].join(',')
+    @points ||= request(endpoint: specific_endpoint)
   end
 
   def forecast_url
@@ -58,15 +60,14 @@ class NoaaWeatherClient
     points['properties']['forecastHourly']
   end
 
-  attr_reader :token, :client, :response
-
   def request(method: :get, base_url: API_BASE_URL, endpoint: '', params: {})
-    @response = client.public_send(
+    response = client.public_send(
       method,
       "#{base_url}#{endpoint}",
       params
     )
     return JSON.parse(response) if response.status.success?
-    raise NoaaWeatherClientError.new, "Status: #{@response.status}, response: #{@response.body}"
+
+    raise NoaaWeatherClientError.new, "Status: #{response.status}, response: #{response.body}"
   end
 end

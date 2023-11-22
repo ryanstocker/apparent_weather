@@ -13,7 +13,7 @@ RSpec.describe ForecastResult, type: :model do
 
     # if it's the 2nd part of the day, we won't have the morning forecast
     it "each day has at least 1 or 2 partial forecast items" do
-      each_day_count = forecast_result.days.map {|d| d.size}
+      each_day_count = forecast_result.days.map(&:size)
       expect(each_day_count).to all(be_between(1,2))
     end
 

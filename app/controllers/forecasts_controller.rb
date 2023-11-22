@@ -19,7 +19,7 @@ class ForecastsController < ApplicationController
 
   def searching?
     forecast_params[:latitude].present? &&
-    forecast_params[:longitude].present?
+      forecast_params[:longitude].present?
   end
 
   def forecast_params

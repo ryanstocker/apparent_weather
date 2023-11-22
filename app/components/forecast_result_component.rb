@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ForecastResultComponent < ViewComponent::Base
   def initialize(forecast_result:)
     @forecast_result = forecast_result

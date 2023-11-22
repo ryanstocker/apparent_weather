@@ -5,31 +5,31 @@ RSpec.describe ForecastPartialDay, type: :model do
 
   let(:hourly_forecast_part) do
     {
-      "number": 1,
-      "name": "",
-      "startTime": "2023-11-20T10:00:00-05:00",
-      "endTime": "2023-11-20T11:00:00-05:00",
-      "isDaytime": true,
-      "temperature": 42,
-      "temperatureUnit": "F",
-      "temperatureTrend": nil,
-      "probabilityOfPrecipitation": {
-          "unitCode": "wmoUnit:percent",
-          "value": 2
+      number: 1,
+      name: "",
+      startTime: "2023-11-20T10:00:00-05:00",
+      endTime: "2023-11-20T11:00:00-05:00",
+      isDaytime: true,
+      temperature: 42,
+      temperatureUnit: "F",
+      temperatureTrend: nil,
+      probabilityOfPrecipitation: {
+          unitCode: "wmoUnit:percent",
+          value: 2
       },
-      "dewpoint": {
-          "unitCode": "wmoUnit:degC",
-          "value": 0.55555555555555558
+      dewpoint: {
+          unitCode: "wmoUnit:degC",
+          value: 0.55555555555555558
       },
-      "relativeHumidity": {
-          "unitCode": "wmoUnit:percent",
-          "value": 70
+      relativeHumidity: {
+          unitCode: "wmoUnit:percent",
+          value: 70
       },
-      "windSpeed": "10 mph",
-      "windDirection": "NE",
-      "icon": "https://api.weather.gov/icons/land/day/ovc,2?size=small",
-      "shortForecast": "Cloudy",
-      "detailedForecast": ""
+      windSpeed: "10 mph",
+      windDirection: "NE",
+      icon: "https://api.weather.gov/icons/land/day/ovc,2?size=small",
+      shortForecast: "Cloudy",
+      detailedForecast: ""
     }
   end
 
