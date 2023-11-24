@@ -34,7 +34,7 @@ RSpec.describe ForecastPartialDay, type: :model do
   end
 
   describe 'attributes' do
-    fit 'has the correct data' do
+    it 'has the correct data' do
       expect(forecast_partial_day.short_forecast).to eq("Cloudy")
       expect(forecast_partial_day.temperature).to eq(42)
     end
