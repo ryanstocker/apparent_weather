@@ -1,0 +1,42 @@
+<div class="text-center">
+  <h1 class="mb-0 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6x">
+    Ap<span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">parent</span> Weather
+  </h1>
+  <p class="mt-0 mb-4 text-lg text-gray-500">Weather for Parents</p>
+</div>
+
+
+<%= form_tag(forecasts_path, method: :get) do %>
+  <div data-controller="address" data-action="google-loaded@window->address#initGoogle" class="md:flex md:justify-center">
+    <label for="forecast_location" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative w-3/5">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+        <%= 
+          text_field_tag(
+            "forecast_location", 
+            params[:forecast_location],
+            data: { "address-target": "input" },
+            class: "block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          ) 
+         %>
+        <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get Forecast</button>
+    </div>
+    <%= hidden_field_tag("postal_code", params[:postal_code], data: { "address-target": "postal_code" }) %>
+    <%= hidden_field_tag("latitude", params[:latitude], data: { "address-target": "latitude" }) %>
+    <%= hidden_field_tag("longitude", params[:longitude], data: { "address-target": "longitude" }) %>
+  </div>
+<% end %>
+
+<%= render ForecastResultComponent.new(forecast_result: @forecast_result) do |f| %>
+  <div class="flex flex-wrap -mx-1 lg:-mx-4">
+    <%= render(ForecastImportantItemCardComponent.new(title: "Walk to School", forecast_partial_day: @forecast_result.walk_to_school)) %>
+    <%= render(ForecastImportantItemCardComponent.new(title: "Recess", forecast_partial_day: @forecast_result.recess)) %>
+    <%= render(ForecastImportantItemCardComponent.new(title: "Walk Home", forecast_partial_day: @forecast_result.walk_home)) %>
+  </div>
+  <%= render ExtendedForecastComponent.new(forecast_partial_days: @forecast_result.days) %>
+<% end %>
+
